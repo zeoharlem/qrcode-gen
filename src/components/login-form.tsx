@@ -32,7 +32,6 @@ export function LoginForm({
         setUrl(value)
         setErrorUrlMsg(validate.error?.message ?? "")
         setValidUrlState(validate.success)
-        console.log(validate)
     }
 
     const handleSvgDownload = () => {
@@ -51,8 +50,8 @@ export function LoginForm({
     return (
         <form className={cn("flex flex-col gap-6", className)} {...props}>
             <div className="flex flex-col items-center gap-2 text-center">
-                <h1 className="text-2xl font-bold">Get QR Code For your URL</h1>
-                <p className="text-muted-foreground text-sm text-balance">
+                <h1 className="text-xl font-bold">Generate Qr Code for your Website</h1>
+                <p className="text-center text-sm">
                     Enter your url and download a qr code for your url.
                 </p>
             </div>
@@ -65,28 +64,10 @@ export function LoginForm({
                 </div>
                 <Button className="w-full" disabled={!validUrlState} onClick={(e) => {
                     e.preventDefault();
-                    console.log("downloading")
                     fnCallback(url)
                     setUrl("")
                     setValidUrlState(false);
                 }}> Generate QRCode </Button>
-
-                {/*<div className="grid grid-cols-2 gap-4">
-                    <Button className="w-full" disabled={!validUrlState} onClick={(e) => {
-                        e.preventDefault();
-                        console.log("downloading")
-                        handleImageDownload("qr-image")
-                    }}>
-                        Download PNG
-                    </Button>
-                    <Button variant="outline" className="w-full" disabled={!validUrlState} onClick={(e) => {
-                        e.preventDefault();
-                        console.log("downloading")
-                        handleImageDownload("qr-image")
-                    }}>
-                        Download SVG
-                    </Button>
-                </div>*/}
             </div>
             <div className="text-center text-sm">
                 Free QR Code Generator. Generate as much as you want
