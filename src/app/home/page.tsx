@@ -25,7 +25,6 @@ export default function HomePageContent() {
                     <a href="#" className="flex items-center gap-2 font-medium">
                         <div
                             className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
-                            {/*<GalleryVerticalEnd className="size-4" />*/}
                         </div>
                         QrCode
                     </a>
@@ -38,7 +37,10 @@ export default function HomePageContent() {
                                 <TabsTrigger value="vcard">Basic Contact(VCard)</TabsTrigger>
                             </TabsList>
                             <TabsContent value="website">
-                                <LoginForm fnCallback={(url) => handleDownloadEvent(url)}/>
+                                <LoginForm fnCallback={(url) => {
+                                    setVcfForms(null)
+                                    handleDownloadEvent(url)
+                                }}/>
                             </TabsContent>
                             <TabsContent value="vcard">
                                 <VCardForm fnCallback={(url, form) => handleDownloadEvent(url, form)}/>
