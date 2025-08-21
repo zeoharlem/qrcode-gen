@@ -38,7 +38,10 @@ export default function HomePageContent() {
                                 <TabsTrigger value="vcard">Basic Contact(VCard)</TabsTrigger>
                             </TabsList>
                             <TabsContent value="website">
-                                <LoginForm fnCallback={(url) => handleDownloadEvent(url)}/>
+                                <LoginForm fnCallback={(url) => {
+                                    setVcfForms(null)
+                                    handleDownloadEvent(url)
+                                }}/>
                             </TabsContent>
                             <TabsContent value="vcard">
                                 <VCardForm fnCallback={(url, form) => handleDownloadEvent(url, form)}/>
