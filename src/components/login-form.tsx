@@ -5,13 +5,13 @@ import {Label} from "@/components/ui/label"
 import {z} from "zod"
 import {useRef, useState} from "react";
 import {QrcgProps} from "@/app/home/component/qrcode-generator";
-import {isValidUrl} from "@/components/utils/form-utils";
+import {isValidUrlWithShortenLink} from "@/components/utils/form-utils";
 
 const schema = z.string().refine((url) => {
-        return isValidUrl(url)
+        return isValidUrlWithShortenLink(url)
     },
     {
-        message: "URL must start with https://, http:// or www."
+        message: "Please enter a valid URL (http, https, www, or short link)"
     }
 );
 
