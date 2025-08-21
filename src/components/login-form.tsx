@@ -5,12 +5,13 @@ import {Label} from "@/components/ui/label"
 import {z} from "zod"
 import {useRef, useState} from "react";
 import {QrcgProps} from "@/app/home/component/qrcode-generator";
+import {isValidUrl} from "@/components/utils/form-utils";
 
-const schema = z.url().refine((url) => {
-        return url.startsWith("https://") || url.startsWith("http://")
+const schema = z.string().refine((url) => {
+        return isValidUrl(url)
     },
     {
-        message: "URL must start with https:// or http://"
+        message: "URL must start with https://, http:// or www."
     }
 );
 
@@ -22,7 +23,6 @@ export function LoginForm({
 
     const svgRef = useRef<SVGSVGElement>(null);
 
-    const [urlErrorMsg, setErrorUrlMsg] = useState("");
     const [validUrlState, setValidUrlState] = useState(false);
     const [url, setUrl] = useState("");
 
@@ -30,7 +30,6 @@ export function LoginForm({
         const value = e.target.value
         const validate = schema.safeParse(value)
         setUrl(value)
-        setErrorUrlMsg(validate.error?.message ?? "")
         setValidUrlState(validate.success)
     }
 
@@ -58,7 +57,8 @@ export function LoginForm({
             <div className="grid gap-6">
                 <div className="grid gap-3">
                     <Label htmlFor="url">Website Address</Label>
-                    <Input className={`pt-6 pb-6`} id="url" value={url} type="url" placeholder="https://example.com"
+                    <Input className={`pt-6 pb-6`} id="url" value={url} maxLength={100} type="url"
+                           placeholder="https://example.com"
                            onChange={handleUrlChange}/>
 
                 </div>
