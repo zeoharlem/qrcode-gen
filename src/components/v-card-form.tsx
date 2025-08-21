@@ -75,6 +75,7 @@ export function VCardForm({className, fnCallback, ...props}: QrcgProps) {
                                                     className="pt-6 pb-6"
                                                     type="text"
                                                     placeholder="e.g John"
+                                                    maxLength={50}
                                                     {...field}
                                                 />
                                             </FormControl>
@@ -98,6 +99,7 @@ export function VCardForm({className, fnCallback, ...props}: QrcgProps) {
                                                     className="pt-6 pb-6"
                                                     type="text"
                                                     placeholder="e.g Doe"
+                                                    maxLength={50}
                                                     {...field}
                                                 />
                                             </FormControl>
@@ -123,6 +125,7 @@ export function VCardForm({className, fnCallback, ...props}: QrcgProps) {
                                                     className="pt-6 pb-6"
                                                     type="email"
                                                     placeholder="e.g john.doe@example.com"
+                                                    maxLength={100}
                                                     {...field}
                                                 />
                                             </FormControl>
@@ -143,6 +146,7 @@ export function VCardForm({className, fnCallback, ...props}: QrcgProps) {
                                                     className="pt-6 pb-6"
                                                     type="tel"
                                                     placeholder="e.g +2348056748833"
+                                                    maxLength={15}
                                                     {...field}
                                                 />
                                             </FormControl>

@@ -17,8 +17,29 @@ export function createZodFormSchema(defaultCountry: CountryCode = "NG") {
                     return phoneNumber ? phoneNumber.number : value;
                 }
             ),
-            email: z.email({message: "Invalid email address."}),
-            //country: z.string().min(2, {message: "Country is required."}), // keep track of selected country
+            email: z.string().refine((value) => {
+                return isValidEmail(value);
+            }, {
+                message: "Invalid email address."
+            }),
+            //country: z.string().min(2, {message: "Country is required."}), // keep track of the selected country
         }
     );
+}
+
+export function isValidUrl(url: string) {
+    const pattern = /^(https?:\/\/|www\.)[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})(\/.*)?$/;
+    return pattern.test(url);
+}
+
+export function normalizeUrl(url: string) {
+    if (!/^https?:\/\//i.test(url)) {
+        return "https://" + url.replace(/^www\./, "");
+    }
+    return url;
+}
+
+export function isValidEmail(email: string) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
 }
