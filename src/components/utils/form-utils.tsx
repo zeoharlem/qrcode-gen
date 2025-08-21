@@ -22,7 +22,6 @@ export function createZodFormSchema(defaultCountry: CountryCode = "NG") {
             }, {
                 message: "Invalid email address."
             }),
-            //country: z.string().min(2, {message: "Country is required."}), // keep track of the selected country
         }
     );
 }
