@@ -32,6 +32,11 @@ export function isValidUrl(url: string) {
     return pattern.test(url);
 }
 
+export function isValidUrlWithShortenLink(url: string) {
+    const pattern = /^(https?:\/\/)?(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}([\/\w.-]*)*\/?$/;
+    return pattern.test(url);
+}
+
 export function normalizeUrl(url: string) {
     if (!/^https?:\/\//i.test(url)) {
         return "https://" + url.replace(/^www\./, "");
