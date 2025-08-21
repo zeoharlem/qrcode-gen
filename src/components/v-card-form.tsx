@@ -59,10 +59,7 @@ export function VCardForm({className, fnCallback, ...props}: QrcgProps) {
                         <div className="flex flex-col items-center gap-2">
                             <h1 className="text-xl font-bold">Generate Virtual Contact</h1>
                             <div className="text-center text-sm">
-                                Have you generated it before?{" "}
-                                <a href="#" className="underline underline-offset-4">
-                                    Click here
-                                </a>
+                                Enter the details you want to use for virtual contact.
                             </div>
                         </div>
                         <div className="flex gap-6">
