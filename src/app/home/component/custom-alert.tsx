@@ -10,21 +10,25 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 
-export default function CustomAlertDialog() {
+export default function TriggerAlertDialog({trigger, title, cancelText, children}: {
+    trigger: React.ReactNode,
+    title: string,
+    cancelText: string,
+    children?: React.ReactNode,
+}) {
     return (
         <AlertDialog>
-            <AlertDialogTrigger>Open</AlertDialogTrigger>
-            <AlertDialogContent>
+            <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
+            <AlertDialogContent className="sm:max-w-5xl w-full h-[80vh] flex flex-col">
                 <AlertDialogHeader>
-                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                    <AlertDialogDescription>
-                        This action cannot be undone. This will permanently delete your account
-                        and remove your data from our servers.
-                    </AlertDialogDescription>
+                    <AlertDialogTitle>{title}</AlertDialogTitle>
                 </AlertDialogHeader>
+                <div className="flex-1 overflow-y-auto pr-2">
+                    {children}
+                </div>
                 <AlertDialogFooter>
-                    <AlertDialogCancel>OK</AlertDialogCancel>
-                    {/*<AlertDialogAction>Continue</AlertDialogAction>*/}
+                    {/*<AlertDialogCancel>{cancelText}</AlertDialogCancel>*/}
+                    <AlertDialogAction>{cancelText}</AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>

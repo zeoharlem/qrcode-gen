@@ -6,6 +6,11 @@ import {useState} from "react";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {formSchema, VCardForm} from "@/components/v-card-form";
 import {z} from "zod";
+import TriggerAlertDialog from "@/app/home/component/custom-alert";
+import {useMDXComponents} from "@/mdx-components";
+import {MDXProvider} from "@mdx-js/react";
+import TermsConditions from '@/app/home/contents/terms-conditions.mdx'
+import PrivacyPolicy from '@/app/home/contents/privacy-policy.mdx'
 
 export default function HomePageContent() {
     const [urlString, setUrlString] = useState("");
@@ -50,8 +55,21 @@ export default function HomePageContent() {
                 </div>
                 <div
                     className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-                    By using this app, you agree to our <a href="#">Terms of Service</a>{" "}
-                    and <a href="#">Privacy Policy</a>.
+                    By using this app, you agree to our <MDXProvider components={useMDXComponents()}>
+                    <TriggerAlertDialog
+                        trigger={<a href="#">Terms of Service</a>}
+                        title="Terms of Service"
+                        cancelText="Ok">
+                        <TermsConditions />
+                    </TriggerAlertDialog>
+                </MDXProvider>{" "}
+
+                    and <MDXProvider components={useMDXComponents()}>
+                    <TriggerAlertDialog
+                        trigger={<a href="#">Privacy Policy</a>} title="Privacy Policy"
+                        cancelText="Ok">
+                        <PrivacyPolicy />
+                    </TriggerAlertDialog></MDXProvider>.
                 </div>
             </div>
 
